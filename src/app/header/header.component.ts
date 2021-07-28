@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataStorageService } from '../shared/data-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -8,10 +9,17 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   collapsed = true;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private dataStorageService: DataStorageService) { }
 
   ngOnInit(): void {
   }
 
+  onSaveData() {
+    this.dataStorageService.storeRecipes();
+  }
+
+  onFetchData() {
+    this.dataStorageService.fetchRecipes().subscribe();
+  }
 
 }
